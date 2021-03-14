@@ -80,19 +80,20 @@
                     </div>
                     <div class="row p-2 mt-3">
                         <div class="form-group col-12">
-                            <lable>Customer Contact:</lable>
-                            <input type="text" id="txtCustomerContact0" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row p-2 mt-3">
-                        <div class="form-group col-12">
                             <lable>Customer Address:</lable>
                             <input type="text" id="txtCustomerAddress0" class="form-control">
                         </div>
                     </div>
                     <div class="row p-2 mt-3">
                         <div class="form-group col-12">
-                            <button type="button" class="btn btn-outline-success fw-bold" id="btnCustomerAdd">Add</button>
+                            <lable>Customer Contact:</lable>
+                            <input type="text" id="txtCustomerContact0" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row p-2 mt-3">
+                        <div class="form-group col-12">
+                            <button type="button" class="btn btn-outline-success fw-bold" id="btnCustomerAdd">Add
+                            </button>
                             <button type="button" class="btn btn-outline-danger fw-bold" id="btnCancel">Cancel</button>
                         </div>
                     </div>
@@ -174,7 +175,7 @@
                     </div>
                     <div class="row p-2 mt-3">
                         <div class="form-group col-12">
-                            <button type="button" class="btn btn-outline-success fw-bold">Add</button>
+                            <button type="button" class="btn btn-outline-success fw-bold" id="btnItemAdd">Add</button>
                             <button type="button" class="btn btn-outline-danger fw-bold">Cancel</button>
                         </div>
                     </div>
@@ -182,7 +183,7 @@
             </div>
         </div>
         <div class="col-xl-8 col-lg-6">
-            <table class="table table-hover border mt-3 p-3 ">
+            <table class="table table-hover border mt-3 p-3 " id="tblItem">
                 <thead class="bg-info">
                 <tr>
                     <th scope="col">Item Code</th>
@@ -193,13 +194,13 @@
                 </thead>
                 <tbody class="bg-secondary text-white">
                 <tr>
-                    <th>I001</th>
+                    <td>I001</td>
                     <td>Rice</td>
                     <td>50</td>
                     <td>110</td>
                 </tr>
                 <tr>
-                    <th>I002</th>
+                    <td>I002</td>
                     <td>Coconut</td>
                     <td>100</td>
                     <td>85s</td>
@@ -458,14 +459,60 @@
     });
 
     $('#btnCustomerAdd').click(function () {
-        $('#tblCustomer tbody').append('<tr>'+
-            '<td>'+ $('#txtCustomerId0').val() +'</td>'+
-            '<td>'+ $('#txtCustomerName0').val() +'</td>'+
-            '<td>'+ $('#txtCustomerAddress0').val() +'</td>'+
-            '<td>'+ $('#txtCustomerContact0').val() +'</td>'+
-        '</tr>');
+        $('#tblCustomer tbody').append('<tr>' +
+            '<td>' + $('#txtCustomerId0').val() + '</td>' +
+            '<td>' + $('#txtCustomerName0').val() + '</td>' +
+            '<td>' + $('#txtCustomerAddress0').val() + '</td>' +
+            '<td>' + $('#txtCustomerContact0').val() + '</td>' +
+            '</tr>');
+        clear();
     });
 
+    function clear() {
+        $('#txtCustomerId0').val("");
+        $('#txtCustomerName0').val("");
+        $('#txtCustomerAddress0').val("");
+        $('#txtCustomerContact0').val("");
+    }
+
+    var customerTable= $('#tblCustomer tbody')[0];
+    for (let i = 0; i < customerTable.rows.length; i++) {
+        customerTable.rows[i].onclick = function () {
+            $('#txtCustomerId0').val(this.cells[0].innerHTML);
+            $('#txtCustomerName0').val(this.cells[1].innerHTML);
+            $('#txtCustomerAddress0').val(this.cells[2].innerHTML);
+            $('#txtCustomerContact0').val(this.cells[3].innerHTML);
+        };
+    }
+
+
+
+    $('#btnItemAdd').click(function () {
+        $('#tblItem tbody').append('<tr>' +
+            '<td>' + $('#txtItemCode0').val() + '</td>' +
+            '<td>' + $('#txtDescription0').val() + '</td>' +
+            '<td>' + $('#txtQty0').val() + '</td>' +
+            '<td>' + $('#txtUnitPrice0').val() + '</td>' +
+            '</tr>');
+        clear();
+    });
+
+    function clear() {
+        $('#txtItemCode0').val("");
+        $('#txtDescription0').val("");
+        $('#txtQty0').val("");
+        $('#txtUnitPrice0').val("");
+    }
+
+    var itemTable= $('#tblItem tbody')[0];
+    for (let i = 0; i < itemTable.rows.length; i++) {
+        itemTable.rows[i].onclick = function () {
+            $('#txtItemCode0').val(this.cells[0].innerHTML);
+            $('#txtDescription0').val(this.cells[1].innerHTML);
+            $('#txtQty0').val(this.cells[2].innerHTML);
+            $('#txtUnitPrice0').val(this.cells[3].innerHTML);
+        };
+    }
 </script>
 </body>
 </html>
