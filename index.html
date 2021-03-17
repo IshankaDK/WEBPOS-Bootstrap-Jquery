@@ -465,26 +465,25 @@
             '<td>' + $('#txtCustomerAddress0').val() + '</td>' +
             '<td>' + $('#txtCustomerContact0').val() + '</td>' +
             '</tr>');
-        clear();
+        clearCustomer();
+        var customerTable = $('#tblCustomer tbody')[0];
+        for (let i = 0; i < customerTable.rows.length; i++) {
+            customerTable.rows[i].onclick = function () {
+                $('#txtCustomerId0').val(this.cells[0].innerHTML);
+                $('#txtCustomerName0').val(this.cells[1].innerHTML);
+                $('#txtCustomerAddress0').val(this.cells[2].innerHTML);
+                $('#txtCustomerContact0').val(this.cells[3].innerHTML);
+            };
+        }
+
     });
 
-    function clear() {
+    function clearCustomer() {
         $('#txtCustomerId0').val("");
         $('#txtCustomerName0').val("");
         $('#txtCustomerAddress0').val("");
         $('#txtCustomerContact0').val("");
     }
-
-    var customerTable= $('#tblCustomer tbody')[0];
-    for (let i = 0; i < customerTable.rows.length; i++) {
-        customerTable.rows[i].onclick = function () {
-            $('#txtCustomerId0').val(this.cells[0].innerHTML);
-            $('#txtCustomerName0').val(this.cells[1].innerHTML);
-            $('#txtCustomerAddress0').val(this.cells[2].innerHTML);
-            $('#txtCustomerContact0').val(this.cells[3].innerHTML);
-        };
-    }
-
 
 
     $('#btnItemAdd').click(function () {
@@ -494,25 +493,43 @@
             '<td>' + $('#txtQty0').val() + '</td>' +
             '<td>' + $('#txtUnitPrice0').val() + '</td>' +
             '</tr>');
-        clear();
+        clearItem();
+        var itemTable = $('#tblItem tbody')[0];
+        for (let i = 0; i < itemTable.rows.length; i++) {
+            itemTable.rows[i].onclick = function () {
+                $('#txtItemCode0').val(this.cells[0].innerHTML);
+                $('#txtDescription0').val(this.cells[1].innerHTML);
+                $('#txtQty0').val(this.cells[2].innerHTML);
+                $('#txtUnitPrice0').val(this.cells[3].innerHTML);
+            };
+        }
     });
 
-    function clear() {
+    function clearItem() {
         $('#txtItemCode0').val("");
         $('#txtDescription0').val("");
         $('#txtQty0').val("");
         $('#txtUnitPrice0').val("");
     }
 
-    var itemTable= $('#tblItem tbody')[0];
-    for (let i = 0; i < itemTable.rows.length; i++) {
-        itemTable.rows[i].onclick = function () {
-            $('#txtItemCode0').val(this.cells[0].innerHTML);
-            $('#txtDescription0').val(this.cells[1].innerHTML);
-            $('#txtQty0').val(this.cells[2].innerHTML);
-            $('#txtUnitPrice0').val(this.cells[3].innerHTML);
-        };
-    }
+    /*
+        $('#tblCustomer>tr').click(function (){
+           let id= $($(this).children().get(0)).text();
+           let name= $($(this).children().get(1)).text();
+           let address= $($(this).children().get(2)).text();
+           let salary= $($(this).children().get(3)).text();
+            console.log(id,name,address,salary);
+        });*/
+
+    /*
+    $('#tblCustomer>tr').click(function (){
+            let id= $(this).children('td:eq(0)').text();
+            let name= $(this).children('td:eq(1)').text();
+            let address= $(this).children('td:eq(2)').text();
+            let salary= $(this).children('td:eq(3)').text();
+            console.log(id,name,address,salary);
+        });
+    */
 </script>
 </body>
 </html>
